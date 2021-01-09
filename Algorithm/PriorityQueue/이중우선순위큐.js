@@ -37,27 +37,25 @@ class PriorityQueue{
     }
 }
 
-const pq = new PriorityQueue();
-
-function parsing(str){
-    const list = str.split(' ');
-    return { cmd: list[0], val: parseInt(list[1])};
-}
-
-function execution(cmd, val){
-    switch(cmd){
-        case 'I':
-            pq.enqueue(val);
-            break;
-        case 'D':
-            if(val == 1) pq.dequeueMax();
-            else pq.dequeueMin();
-            break;
-    }
-}
-
 function solution(operations) {
-    var answer = [];
+    const pq = new PriorityQueue();
+
+    function parsing(str){
+        const list = str.split(' ');
+        return { cmd: list[0], val: parseInt(list[1])};
+    }
+
+    function execution(cmd, val){
+        switch(cmd){
+            case 'I':
+                pq.enqueue(val);
+                break;
+            case 'D':
+                if(val == 1) pq.dequeueMax();
+                else pq.dequeueMin();
+                break;
+        }
+    }
     operations.forEach((oper)=>{
         const { cmd, val } = parsing(oper);
         execution(cmd,val);
